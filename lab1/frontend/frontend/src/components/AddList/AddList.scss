@@ -1,0 +1,33 @@
+.add-list {
+    &__form {
+        width: 235px;
+        height: 100px;
+        border-radius: 10px;
+        box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+        background-color: white;
+        padding: 22px 18px 16px 18px;
+        border: 2px solid #eae8e8;
+        position: absolute;
+        top: 60%;
+        bottom: auto;
+        left: 220px;
+        z-index: 2;
+    }
+    &-close-btn {
+        position: absolute;
+        right: -9px;
+        top: -9px;
+        cursor: pointer;
+        width: 20px;
+        opacity: 0.8;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.button {
+    width: 100%;
+    margin-top: 18px;
+}

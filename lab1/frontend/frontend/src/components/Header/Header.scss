@@ -1,0 +1,71 @@
+.header {
+    background-color: #3e0f48de;
+    margin: 0px -0.7px;
+    height: 80px;
+    border-bottom: 2px solid #3d3d3d;
+    border-radius: 9px 9px 0px 0px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 45px;
+
+    &__logo, p {
+        color: white;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    &__user {
+        display: flex;
+        gap: 9px;
+
+        .user-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1.6px solid #f5f5f5;
+            object-fit: cover;
+            align-self: center;
+        }
+
+        .menu-image {
+            background: #f2f2f2;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1.4px solid #f5f5f5;
+            align-self: center;
+            object-fit: cover;
+            cursor: pointer;
+            padding: 1px 1px 0px 1px;
+        }
+    }
+}
+
+.menu {
+    position: relative;
+
+    &__ul {
+        position: absolute;
+        width: 180px;
+        background: #62356c;
+        font-size: 18px;
+        text-align: center;
+        color: white;
+        right: -0.1%;
+        border: 1px solid #62356c;
+
+    li {
+        font-size: 17px;
+        padding: 7px;
+        cursor: pointer;
+    }
+    li:not(:last-child) {
+        border-bottom: 1px solid white;
+    }
+
+    li:hover {
+        background: #8a5795;
+    }
+    }
+}

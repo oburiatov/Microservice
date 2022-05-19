@@ -1,0 +1,214 @@
+asyncapi: 2.0.0
+
+info:
+  title: Planer-OnTime API
+  version: '1.0'
+  description: |
+    ### This API allows you to work with your tasks using our Client App.
+    Documentated methods for server part.
+servers:
+  public:
+    url: ws://localhost:3000
+    protocol: ws
+    description: |
+      One and single main server 
+
+channels:
+  /:
+    subscribe:
+      description: Messages that server receives from the Client
+      operationId: onMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/get_lists_and_notes'
+          - $ref: '#/components/messages/createNote'
+          - $ref: '#/components/messages/updateNote'
+          - $ref: '#/components/messages/deleteNote'
+          - $ref: '#/components/messages/createList'
+          - $ref: '#/components/messages/updateList'
+          - $ref: '#/components/messages/deleteList'
+    publish:
+      description: Messages that are sent to the client
+      operationId: sendMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/data'
+          - $ref: '#/components/messages/dataUPD'
+          - $ref: '#/components/messages/noteUPD'
+          - $ref: '#/components/messages/noteDeleted'
+          - $ref: '#/components/messages/listCreated'
+          - $ref: '#/components/messages/listUpdated'
+          - $ref: '#/components/messages/listDeleted'
+
+components:
+  messages:
+    get_lists_and_notes:
+      summary: Get all lists and notes by user`s google id
+      payload:
+        type: string
+    createNote:
+      summary: Request to crate new note
+      description:
+        \"idlist\" is optional field. Required in case when we need to set list this note lincked to .
+      payload:
+        type: object
+        properties:
+          googleIdentify:
+            type: number
+          noteName:
+            type: string
+          createDate:
+            type: number
+          deadlineTask:
+            type: number
+          importantTask:
+            type:  boolean
+          statusComp:
+            type: boolean
+          idlist:
+            type: [number, 'null']
+    updateNote:
+      summary: Request to update a note
+      payload:
+        type: object
+        properties:
+          googleIdentify:
+            type: number
+          id:
+            type: number
+          noteName:
+            type: string
+          deadlineTask:
+            type: [number , 'null']
+          dateComplation:
+            type: [number , 'null']
+          importantTask:
+            type: boolean
+    deleteNote:
+      summary: Request to delete a note
+      payload:
+        type: object
+        properties:
+          googleIdentify:
+            type: number
+          id:
+            type: number
+          dataDelete:
+            type: number
+    createList:
+      summary: Request to crate new list
+      payload:
+        type: object
+        properties:
+          googleIdentify:
+            type: number
+          nameList:
+            type: string
+    updateList:
+      summary: Request to update list
+      payload:
+        type: object
+        properties:
+          googleIdentify:
+            type: number
+          nameList:
+            type: string
+          id:
+            type: number
+    deleteList:
+      summary: Request to delete list
+      payload:
+        type: object
+        properties:
+          googleIdentify:
+            type: number
+          id:
+            type: number
+          dataDelete:
+            type: number
+
+
+
+
+    data:
+      summary: send lists and notes (responce from "get_lists_and_notes")
+      payload:
+        type: object
+        properties:
+          lists:
+            type: array
+            items:
+              type: object
+              properties:
+                nameList:
+                  type: string
+                id:
+                  type: number
+
+          notes:
+            type: array
+            items:
+              type: object
+              properties:
+                listId:
+                  type: number
+                id:
+                  type: number
+                noteName:
+                  type: string
+                dateCreate:
+                  type: string
+                deadline:
+                  type: string
+                dateComplation:
+                  type: ['null' , string]
+                important:
+                  type: boolean
+                status:
+                  type: boolean
+
+
+    dataUPD:
+      summary: send id of created note (responce from "createNote")
+      payload:
+        type: number
+        enum:
+          -  '>=0 if success'
+          -  -1 if not success
+
+    noteUPD:
+      summary: responce from "updateNote"
+      payload:
+        type: string
+        enum:
+          - " 'Note update' if success"
+          - " 'Note can`t be update' if not success"
+
+    noteDeleted:
+      summary: responce from "deleteNote"
+      payload:
+        type: string
+        enum:
+          - " 'Note deleted' if success"
+          - " 'Note can`t be delete' if not success"
+
+    listCreated:
+      summary: send id of created list (responce from "createList")
+      payload:
+        type: number
+
+    listUpdated:
+      summary: responce from "updateList"
+      payload:
+        type: string
+        enum:
+          - " 'update list' if success"
+          - " 'list can`t be update' if not success"
+
+    listDeleted:
+      summary: responce from "deleteList"
+      payload:
+        type: string
+        enum:
+          - " 'delete list' if success"
+          - " 'list can`t be deleted' if not success"

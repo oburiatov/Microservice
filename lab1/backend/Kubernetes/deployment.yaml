@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-manager-backend
+  namespace: prod
+spec:
+  selector:
+    matchLabels:
+      app: task-manager-prod
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: task-manager-prod
+    spec:
+      containers:
+        - name: task-manager-backend
+          image: oburiatov/task-manager-backend
+          imagePullPolicy: Always
+          ports:
+            - name: main
+              containerPort: 3000
+              hostPort: 3000
+          livenessProbe:
+            httpGet:
+            path: /health
+            port: main
+
+          # resources:
+          #   requests:
+          #     memory: "1Gi"
+          #     cpu: "4000m"
+          #   limits:
+          #     memory: "2Gi"
+          #     cpu: "6000m"
