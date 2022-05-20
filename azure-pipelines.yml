@@ -14,43 +14,43 @@ trigger:
 
 pool: kubernetes-microservice
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+# steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-    ls
-  displayName: 'Run a multi-line script'
+# - script: |
+#     echo Add other tasks to build, test, and deploy your project.
+#     echo See https://aka.ms/yaml
+#     ls
+#   displayName: 'Run a multi-line script'
 
-# variables:
-#   ImageName: 'oburiatov/task-manager-backend-amd64:$(Build.BuildId)'
+variables:
+  ImageName: 'oburiatov/task-manager-backend-amd64:$(Build.BuildId)'
 
-# stages:
-# - stage: Build
-#   displayName: Build image
-#   jobs:  
-#   - job: DockerImage
-#     displayName: Build and push Docker image
-#     steps:
-#     - task: Docker@1
-#       displayName: 'Build the Docker image'
-#       inputs:
-#         containerregistrytype: 'Container Registry'
-#         dockerRegistryEndpoint: 'Docker Hub'
-#         command: 'Build an image'
-#         dockerFile: 'lab1/backend/Dockerfile'
-#         imageName: '$(ImageName)'
-#         includeLatestTag: true
-#         useDefaultContext: false
-#         buildContext: '.'
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: DockerImage
+    displayName: Build and push Docker image
+    steps:
+    - task: Docker@1
+      displayName: 'Build the Docker image'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Build an image'
+        dockerFile: '**/lab1/backend/Dockerfile'
+        imageName: '$(ImageName)'
+        includeLatestTag: true
+        useDefaultContext: false
+        buildContext: '.'
 
-#     - task: Docker@1
-#       displayName: 'Push the Docker image to Dockerhub'
-#       inputs:
-#         containerregistrytype: 'Container Registry'
-#         dockerRegistryEndpoint: 'Docker Hub'
-#         command: 'Push an image'
-#         imageName: '$(ImageName)'
-#       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
+    - task: Docker@1
+      displayName: 'Push the Docker image to Dockerhub'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageName)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
