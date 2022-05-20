@@ -27,12 +27,12 @@ stages:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Build an image'
-        dockerFile: 'lab1/backend/Dockerfile'
+        dockerFile: 'Microservice/lab1/backend/Dockerfile'
         imageName: '$(ImageName)'
         includeLatestTag: true
         useDefaultContext: false
         buildContext: '.'
-        
+
     - task: Docker@1
       displayName: 'Push the Docker image to Dockerhub'
       inputs:
