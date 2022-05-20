@@ -8,6 +8,9 @@ trigger:
   branches:
     include:
       - master
+  paths:
+    include:
+    - lab1/backend/*
 
 pool: kubernetes-microservice
 
@@ -27,7 +30,7 @@ stages:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Build an image'
-        dockerFile: 'Microservice/lab1/backend/Dockerfile'
+        dockerFile: 'lab1/backend/Dockerfile'
         imageName: '$(ImageName)'
         includeLatestTag: true
         useDefaultContext: false
