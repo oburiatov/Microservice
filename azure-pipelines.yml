@@ -40,7 +40,7 @@ stages:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Build an image'
-        dockerFile: '**/lab1/backend/Dockerfile'
+        dockerFile: '**/Dockerfile'
         imageName: '$(ImageName)'
         includeLatestTag: true
         useDefaultContext: false
