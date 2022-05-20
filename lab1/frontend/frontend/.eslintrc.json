@@ -2,7 +2,7 @@
     "extends": [
         "plugin:react/recommended",
         "airbnb",
-        "../.eslintrc.json"
+        ".eslintrc.json"
     ],
     "parserOptions": {
         "ecmaVersion": 12
