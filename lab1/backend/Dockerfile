@@ -1,4 +1,5 @@
-FROM --platform=linux/amd64 node:14.15-alpine as build
+FROM node:14.15-alpine as build
+ENV TARGETARCH=linux-x64
 WORKDIR /app
 COPY . ./
 RUN npm install --prefix server --force
