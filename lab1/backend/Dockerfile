@@ -1,5 +1,6 @@
 FROM node:14.15-alpine
-ENV TARGETARCH=linux-x64
+ENV TARGETPLATFORM=linux/amd64
+ARG TARGETPLATFORM=linux/amd64
 WORKDIR /app
 COPY . ./
 RUN npm install --prefix server --force
