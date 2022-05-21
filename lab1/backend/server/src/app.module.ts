@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppGateway } from './app.gateway';
-import { GetController, HealthController } from './controllers/get.controller';
-import { TerminusModule } from '@nestjs/terminus';
-import { HttpModule } from '@nestjs/axios';
+import { GetController} from './controllers/get.controller';
 
 @Module({
-  imports: [TerminusModule,HttpModule],
-  controllers: [GetController,HealthController],
+  imports: [],
+  controllers: [GetController],
   providers: [AppGateway],
 })
 export class AppModule {}

@@ -14,9 +14,8 @@ import TomatoSvg from '../../assets/tomato.svg';
 import PlusSvg from '../../assets/plus.svg';
 import RemoveSVg from '../../assets/delete.svg';
 
-const socket = window.io.connect('ws://localhost:3000');
-
-// eslint-disable-next-line sonarjs/cognitive-complexity
+const socket = window.io.connect('ws://localhost:3000', {
+});
 export default function List({
   lists,
   onClickList,

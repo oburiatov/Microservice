@@ -1,12 +1,10 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable sonarjs/cognitive-complexity */
-/* eslint-disable no-restricted-syntax */
 import React from 'react';
 
 import Context from './context';
 import { List, AddList, Content, Header } from './components';
 
-const socket = window.io.connect('ws://localhost:3000');
+const socket = window.io.connect('ws://localhost:3000', {
+});
 
 function App() {
   const [lists, setLists] = React.useState([]);
@@ -42,11 +40,11 @@ function App() {
       getData();
     });
     socket.on('listUpdated', (answer) => {
-      console.log(answer);
+      console.log("SSSSSSSSSSSS" + answer);
       getData();
     });
     socket.on('noteDeleted', (answer) => {
-      console.log(answer);
+      console.log("JJJJJJJJJJ" + answer);
       getData();
     });
   });
@@ -95,8 +93,9 @@ function App() {
         }),
       }).then(async (resp) => {
         const r = await resp.text();
-        console.log('user', r);
+        console.log('user gggggggggggg', r);
       });
+      console.log("Front send get")
       window.location.reload();
     };
 
@@ -121,7 +120,9 @@ function App() {
       .get('http://localhost:3001/lists?_embed=tasks')
       .then(({ data }) => setLists(data)); */
 
+    console.log("We in getData()")
     socket.once('data', (answer) => {
+      console.log("Getting data")
       let counter = false;
       for (const k of answer.lists) {
         if (!k.id) {
@@ -144,11 +145,14 @@ function App() {
       setLists(answer.lists);
     });
     // eslint-disable-next-line no-extra-boolean-cast
-    if (!!userInfo)
+    if (!!userInfo){
+      console.log("Front get_lists_and_notes socket.emit")
       socket.emit(
         'get_lists_and_notes',
         JSON.parse(window.localStorage.getItem('authInfo')).googleUserId,
       );
+    }
+      
   }
 
   React.useEffect(getData, [window.localStorage]);

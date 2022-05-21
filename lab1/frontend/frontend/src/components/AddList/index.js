@@ -3,7 +3,8 @@ import React from 'react';
 import './AddList.scss';
 import CancelSvg from '../../assets/cancel.svg';
 
-const socket = window.io.connect('ws://localhost:3000');
+const socket = window.io.connect('ws://localhost:3000', {
+});
 
 export default function AddList({ isVisible, setVisibility }) {
   // const [isVisible, setVisibility] = React.useState(false);
