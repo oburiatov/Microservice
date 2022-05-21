@@ -12,7 +12,7 @@ trigger:
   #   include:
   #   - lab1/backend/*
 
-pool: kubernetes-microservice
+pool: docker-microservice
 
 # steps:
 # - script: echo Hello, world!
