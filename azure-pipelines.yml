@@ -63,16 +63,10 @@ stages:
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Push an image'
         imageName: '$(ImageNameLatest)'
-      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+
     - task: KubernetesManifest@0
-      displayName: Deploy to Kubernetes cluster
       inputs:
-        action: deploy
-        namespace: $(k8sNamespace)
-        manifests: |
-          $(System.ArtifactsDirectory)/manifests/deployment.yml
-          $(System.ArtifactsDirectory)/manifests/service.yml
-        imagePullSecrets: |
-          $(imagePullSecret)
-        containers: |
-          $(containerRegistry)/$(imageRepository):$(tag)          
+        action: 'deploy'
+        kubernetesServiceConnection: 'Kubernetes-prod-1653141034833'
+        namespace: 'prod'
+        manifests: '**/lab1/backend/Kubernetes/deployment.yaml'
