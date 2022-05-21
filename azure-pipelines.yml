@@ -64,3 +64,9 @@ stages:
         command: 'Push an image'
         imageName: '$(ImageNameLatest)'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))    
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'Kubernetes-prod-1653141034833'
+        namespace: 'prod'
+        manifests: '**/lab1/backend/Kubernetes/deployment.yaml'
