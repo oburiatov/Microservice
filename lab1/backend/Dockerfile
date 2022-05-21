@@ -1,4 +1,4 @@
-FROM node:14.15-alpine as build
+FROM node:14.15-alpine
 ENV TARGETARCH=linux-x64
 WORKDIR /app
 COPY . ./
