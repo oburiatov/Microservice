@@ -26,6 +26,7 @@ pool: kubernetes-microservice
 
 variables:
   ImageName: 'oburiatov/task-manager-backend-amd64:$(Build.BuildId)'
+  ImageNameLatest: 'oburiatov/task-manager-backend-amd64:latest'
 
 stages:
 - stage: Build
@@ -54,3 +55,12 @@ stages:
         command: 'Push an image'
         imageName: '$(ImageName)'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
+
+    - task: Docker@1
+      displayName: 'Push the Docker image to Dockerhub'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameLatest)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))    
