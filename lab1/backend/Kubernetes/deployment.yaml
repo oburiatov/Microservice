@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: task-manager-backend
-          image: oburiatov/task-manager-backend:latest
+          image: oburiatov/task-manager-backend-amd64:latest
           imagePullPolicy: Always
           ports:
             - name: main
