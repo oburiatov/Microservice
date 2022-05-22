@@ -9,8 +9,10 @@ trigger:
 pool: kubernetes-microservice
 
 variables:
-  ImageName: 'oburiatov/task-manager-backend-amd64:$(Build.BuildId)'
-  ImageNameLatest: 'oburiatov/task-manager-backend-amd64:latest'
+  ImageNameBackend: 'oburiatov/task-manager-backend-amd64:$(Build.BuildId)'
+  ImageNameBackendLatest: 'oburiatov/task-manager-backend-amd64:latest'
+  ImageNameFrontend: 'oburiatov/task-manager-frontend-amd64:$(Build.BuildId)'
+  ImageNameFrontendLatest: 'oburiatov/task-manager-frontend-amd64:latest'
 
 stages:
 - stage: Build
@@ -20,37 +22,66 @@ stages:
     displayName: Build and push Docker image
     steps:
     - task: Docker@1
-      displayName: 'Build the Docker image'
+      displayName: 'Build the backend Docker image'
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Build an image'
         dockerFile: '**/lab1/backend/Dockerfile'
-        imageName: '$(ImageName)'
+        imageName: '$(ImageNameBackend)'
         includeLatestTag: true
         useDefaultContext: false
         buildContext: '.'
 
     - task: Docker@1
-      displayName: 'Push the Docker image to Dockerhub'
+      displayName: 'Push the backend Docker image to Dockerhub with "tag" mark'
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Push an image'
-        imageName: '$(ImageName)'
+        imageName: '$(ImageNameBackend)'
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
 
     - task: Docker@1
-      displayName: 'Push the Docker image to Dockerhub'
+      displayName: 'Push the backend Docker image to Dockerhub with "latest" mark'
       inputs:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'Docker Hub'
         command: 'Push an image'
-        imageName: '$(ImageNameLatest)'
+        imageName: '$(ImageNameBackendLatest)'
+
+    - task: Docker@1
+      displayName: 'Build the frontend Docker image'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Build an image'
+        dockerFile: '**/lab1/frontend/Dockerfile'
+        imageName: '$(ImageNameFrontend)'
+        includeLatestTag: true
+        useDefaultContext: false
+        buildContext: '.'
+
+    - task: Docker@1
+      displayName: 'Push the frontend Docker image to Dockerhub with "tag" mark'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameFrontend)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
+
+    - task: Docker@1
+      displayName: 'Push the frontend Docker image to Dockerhub with "latest" mark'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameFrontendLatest)'
 
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
         kubernetesServiceConnection: 'Kubernetes-prod-1653141034833'
         namespace: 'prod'
-        manifests: '**/lab1/backend/Kubernetes/deployment.yaml'
+        manifests: '**/lab1/Kubernetes/deployment.yaml'

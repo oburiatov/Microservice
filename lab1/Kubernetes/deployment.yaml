@@ -21,6 +21,13 @@ spec:
             - name: main
               containerPort: 3000
               hostPort: 3000
+        - name: task-manager-frontend
+          image: oburiatov/task-manager-frontend-amd64:latest
+          imagePullPolicy: Always
+          ports:
+            - name: main
+              containerPort: 3001
+              hostPort: 3001
           # livenessProbe:
           #   httpGet:
           #     path: /health

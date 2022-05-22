@@ -7,8 +7,8 @@ spec:
   type: NodePort
   ports:
     - name: main
-      port: 3000
-      targetPort: 3000
+      port: 3001
+      targetPort: 3001
       nodePort: 32700
   selector:
     app: task-manager-prod
