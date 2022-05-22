@@ -8,7 +8,8 @@ import WeekSvg from '../../assets/week.svg';
 import TomorrowSvg from '../../assets/sunrise.svg';
 import MonthSvg from '../../assets/month.svg';
 
-const socket = window.io.connect('ws://localhost:3000');
+const socket = window.io.connect('ws://localhost:3000', {
+});
 
 export default function AddTask({ list }) {
   const [isVisibleForm, setFormVisibility] = React.useState(false);
@@ -131,7 +132,6 @@ export default function AddTask({ list }) {
   return (
     <div className="addTask">
       {!isVisibleForm ? (
-        // eslint-disable-next-line jsx-a11y/no-static-element-interactions
         <div className="addTask__newTask" onClick={changeFormVisibility}>
           <img src={PlusSvg} alt="add" />
           <span>New task</span>

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext } from 'react';
 import AddTask from '../AddTask';
 // import EditTask from '../EditTask';
@@ -11,7 +10,8 @@ import Edit2Svg from '../../assets/edit2.svg';
 import DeleteSvg from '../../assets/cross2.svg';
 import StarSvg from '../../assets/star.svg';
 // import MoreSvg from '../../assets/more.svg';
-const socket = window.io.connect('ws://localhost:3000');
+const socket = window.io.connect('ws://localhost:3000', {
+});
 
 export default function Tasks({ list, listName }) {
   const {

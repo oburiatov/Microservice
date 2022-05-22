@@ -1,7 +1,7 @@
 export const config = {
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: process.env.PORT,
+  user: 'arch',
+  host: 'localhost',
+  database: 'testbdformicroservices',
+  password: '11111111',
+  port: 5432,
 };

@@ -46,6 +46,8 @@ export const pool = new Pool(config);
 
 // функції які повертають дані з бд
 async function getListsAndNotesFromDB(user: IUserID): Promise<IDataSuitier> {
+  console.log("We in getListsAndNotesFromDB in server")
+  console.log("Server get request for getting content by user ID : " + user)
   const notes = await pool.query(`select *
                                   from gettingNotes('${user}')`);
   const lists = await pool.query(`select *
@@ -54,7 +56,7 @@ async function getListsAndNotesFromDB(user: IUserID): Promise<IDataSuitier> {
 }
 
 async function createNote(data: ICreateNoteData): Promise<number> {
-  const datafrombd = await pool.query(
+  let datafrombd = await pool.query(
     `select *
      from settingNote('${data.googleIdentify}',
                       '${data.noteName}',
@@ -97,13 +99,7 @@ async function updateNote(data: IUpdateNote): Promise<void> {
   return res.rows;
 }
 
-@WebSocketGateway(
-  {
-    cors: {
-      origin: `*`
-    }
-  })
-export class FooGateway {}
+@WebSocketGateway()
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
@@ -124,11 +120,9 @@ export class AppGateway
 
   @SubscribeMessage('get_lists_and_notes')
   async handleList(client: Socket, user: IUserID) {
-    console.log("It's backend");
+    console.log("it is server get_lists_and_notes")
     await client.join(`${user}`);
     const datafrombd = await getListsAndNotesFromDB(user);
-    console.log(datafrombd);
-    console.log(client.id);
     await this.server.to(`${client.id}`).emit('data', datafrombd);
   }
 

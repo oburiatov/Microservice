@@ -3,16 +3,21 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
-import { HttpCode } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin:'http://localhost:3001',
+    methods:['GET', 'POST'],
     credentials: true,
-  });
-  app.use(cors({credentials: true, origin: 'http://localhost:3001'}));
+  })
+  app.use(cors({
+    
+      origin:'http://localhost:3001',
+      methods:['GET', 'POST'],
+      credentials: true
+    
+  }))
   app.useStaticAssets(join(__dirname, '..', 'static'));
 
   
