@@ -21,10 +21,10 @@ spec:
             - name: main
               containerPort: 3000
               hostPort: 3000
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: main
+          # livenessProbe:
+          #   httpGet:
+          #     path: /health
+          #     port: main
           # resources:
           #   requests:
           #     memory: "1Gi"
