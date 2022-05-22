@@ -1,0 +1,56 @@
+name : Docker-CI
+
+trigger:
+  branches:
+    include:
+      - master
+
+
+pool: kubernetes-microservice
+
+variables:
+  ImageName: 'oburiatov/task-manager-backend-amd64:$(Build.BuildId)'
+  ImageNameLatest: 'oburiatov/task-manager-backend-amd64:latest'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: DockerImage
+    displayName: Build and push Docker image
+    steps:
+    - task: Docker@1
+      displayName: 'Build the Docker image'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Build an image'
+        dockerFile: '**/lab1/backend/Dockerfile'
+        imageName: '$(ImageName)'
+        includeLatestTag: true
+        useDefaultContext: false
+        buildContext: '.'
+
+    - task: Docker@1
+      displayName: 'Push the Docker image to Dockerhub'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageName)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
+
+    - task: Docker@1
+      displayName: 'Push the Docker image to Dockerhub'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameLatest)'
+
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'Kubernetes-prod-1653141034833'
+        namespace: 'prod'
+        manifests: '**/lab1/backend/Kubernetes/deployment.yaml'

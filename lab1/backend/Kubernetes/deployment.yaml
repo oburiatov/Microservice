@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: task-manager-backend
-          image: oburiatov/task-manager-backend
+          image: oburiatov/task-manager-backend-amd64:latest
           imagePullPolicy: Always
           ports:
             - name: main
@@ -23,9 +23,8 @@ spec:
               hostPort: 3000
           livenessProbe:
             httpGet:
-            path: /health
-            port: main
-
+              path: /health
+              port: main
           # resources:
           #   requests:
           #     memory: "1Gi"
