@@ -3,6 +3,6 @@ ENV TARGETPLATFORM=linux/amd64
 ARG TARGETPLATFORM=linux/amd64
 WORKDIR /app
 COPY lab1/frontend/. ./
-RUN npm install --force
+RUN npm install --prefix server --force
 EXPOSE 3001
-CMD ["npm", "run", "start", "--port", "3001"]
+CMD ["npm", "run", "start", "--prefix", "client"]
