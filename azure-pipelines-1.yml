@@ -26,3 +26,4 @@ stages:
       inputs:
         dockerVersion: 17.09.0-ce 
         releaseType: stable
+        
