@@ -1,4 +1,4 @@
-FROM node:14.15-alpine as build
+FROM node:14.15-alpine AS build
 ENV TARGETPLATFORM=linux/amd64
 ARG TARGETPLATFORM=linux/amd64
 WORKDIR /app
