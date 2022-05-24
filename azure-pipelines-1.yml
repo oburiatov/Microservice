@@ -1,0 +1,28 @@
+name : Docker-CI
+
+trigger:
+  branches:
+    include:
+      - master
+
+
+pool: kubernetes-microservice
+
+variables:
+  ImageNameBackend: 'oburiatov/task-manager-backend-amd64:$(Build.BuildId)'
+  ImageNameBackendLatest: 'oburiatov/task-manager-backend-amd64:latest'
+  ImageNameFrontend: 'oburiatov/task-manager-frontend-amd64:$(Build.BuildId)'
+  ImageNameFrontendLatest: 'oburiatov/task-manager-frontend-amd64:latest'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: DockerImage
+    displayName: Build and push Docker image
+    steps:
+    - task: DockerInstaller@0
+      displayName: Docker Installer
+      inputs:
+        dockerVersion: 17.09.0-ce
+        releaseType: stable
