@@ -18,7 +18,7 @@ spec:
           image: oburiatov/task-manager-backend-amd64:latest
           imagePullPolicy: Always
           ports:
-            - name: main
+            - name: backend
               containerPort: 3000
               hostPort: 3000
         - name: task-manager-frontend
@@ -26,8 +26,8 @@ spec:
           imagePullPolicy: Always
           ports:
             - name: main
-              containerPort: 3001
-              hostPort: 3001
+              containerPort: 443
+              hostPort: 443
           # livenessProbe:
           #   httpGet:
           #     path: /health
