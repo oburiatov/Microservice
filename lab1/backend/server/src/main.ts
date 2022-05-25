@@ -7,13 +7,13 @@ import { join } from 'path';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.enableCors({
-    origin:'http://localhost:3001',
+    origin:'https://devopseek.me:30000',
     methods:['GET', 'POST'],
     credentials: true,
   })
   app.use(cors({
     
-      origin:'http://localhost:3001',
+      origin:'https://devopseek.me:30000',
       methods:['GET', 'POST'],
       credentials: true
     
