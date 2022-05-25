@@ -25,7 +25,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - name: https
-              containerPort: 3005
+              containerPort: 3001
           # livenessProbe:
           #   httpGet:
           #     path: /health

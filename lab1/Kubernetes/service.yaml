@@ -7,9 +7,9 @@ spec:
   type: NodePort
   ports:
     - name: https
-      port: 3005
-      targetPort: 3005
-      nodePort: 30005
+      port: 3001
+      targetPort: 3001
+      nodePort: 30000
     # - name: backend
     #   port: 3000
     #   targetPort: 3000
