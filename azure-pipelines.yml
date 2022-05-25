@@ -85,3 +85,10 @@ stages:
         namespace: 'prod'
         manifests: '**/lab1/Kubernetes/deployment.yaml'
 
+    - task: KubernetesManifest@0
+      inputs:
+        action: 'deploy'
+        kubernetesServiceConnection: 'Kubernetes-prod-1653456749838'
+        namespace: 'prod'
+        manifests: '**/lab1/Kubernetes/service.yaml'
+
