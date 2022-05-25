@@ -84,3 +84,4 @@ stages:
         kubernetesServiceConnection: 'Kubernetes-prod-1653141034833'
         namespace: 'prod'
         manifests: '**/lab1/Kubernetes/deployment.yaml'
+
