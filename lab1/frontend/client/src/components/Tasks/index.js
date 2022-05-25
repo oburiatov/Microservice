@@ -10,7 +10,7 @@ import Edit2Svg from '../../assets/edit2.svg';
 import DeleteSvg from '../../assets/cross2.svg';
 import StarSvg from '../../assets/star.svg';
 // import MoreSvg from '../../assets/more.svg';
-const socket = window.io.connect('wss://devopseek.me:30001', {
+const socket = window.io.connect('ws://devopseek.me:30001', {
 });
 
 export default function Tasks({ list, listName }) {

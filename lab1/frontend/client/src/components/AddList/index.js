@@ -3,7 +3,7 @@ import React from 'react';
 import './AddList.scss';
 import CancelSvg from '../../assets/cancel.svg';
 
-const socket = window.io.connect('wss://devopseek.me:30001', {
+const socket = window.io.connect('ws://devopseek.me:30001', {
 });
 
 export default function AddList({ isVisible, setVisibility }) {

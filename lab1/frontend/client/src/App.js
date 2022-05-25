@@ -3,7 +3,7 @@ import React from 'react';
 import Context from './context';
 import { List, AddList, Content, Header } from './components';
 
-const socket = window.io.connect('wss://devopseek.me:30001', {
+const socket = window.io.connect('ws://devopseek.me:30001', {
 });
 
 function App() {
@@ -83,7 +83,7 @@ function App() {
           email: user.getBasicProfile().getEmail(),
         }),
       );
-      fetch('https://devopseek.me:30001/get', {
+      fetch('http://devopseek.me:30001/get', {
         method: 'POST',
         body: JSON.stringify({
           googleUserId: user.getBasicProfile().getId(),

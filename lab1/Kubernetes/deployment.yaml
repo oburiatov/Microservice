@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: Always
           ports:
             - name: backend
-              containerPort: 3000
+              containerPort: 30001
         - name: task-manager-frontend
           image: oburiatov/task-manager-frontend-amd64:latest
           imagePullPolicy: Always

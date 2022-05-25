@@ -8,8 +8,8 @@ info:
     Documentated methods for server part.
 servers:
   public:
-    url: wss://devopseek.me:30001
-    protocol: wss
+    url: ws://devopseek.me:30001
+    protocol: ws
     description: |
       One and single main server 
 
