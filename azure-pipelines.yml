@@ -5,7 +5,6 @@ trigger:
     include:
       - master
 
-
 pool: kubernetes-microservice
 
 variables:
