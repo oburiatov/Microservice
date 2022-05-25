@@ -10,9 +10,9 @@ spec:
       port: 3005
       targetPort: 3005
       nodePort: 30005
-    - name: backend
-      port: 3000
-      targetPort: 3000
-      nodePort: 30006
+    # - name: backend
+    #   port: 3000
+    #   targetPort: 3000
+    #   nodePort: 30006
   selector:
     app: task-manager-prod
