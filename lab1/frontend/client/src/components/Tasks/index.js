@@ -10,7 +10,7 @@ import Edit2Svg from '../../assets/edit2.svg';
 import DeleteSvg from '../../assets/cross2.svg';
 import StarSvg from '../../assets/star.svg';
 // import MoreSvg from '../../assets/more.svg';
-const socket = window.io.connect('ws://localhost:3000', {
+const socket = window.io.connect('wss://devopseek.me:30001', {
 });
 
 export default function Tasks({ list, listName }) {
@@ -68,7 +68,7 @@ export default function Tasks({ list, listName }) {
   }
 
   function onChangeImpStatus(event, task) {
-    /* axios.patch('http://localhost:3001/tasks/' + task.id, {
+    /* axios.patch('http://:3001/tasks/' + task.id, {
       important: event.target.checked,
     }); */
 

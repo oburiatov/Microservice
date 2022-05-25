@@ -8,7 +8,7 @@ import WeekSvg from '../../assets/week.svg';
 import TomorrowSvg from '../../assets/sunrise.svg';
 import MonthSvg from '../../assets/month.svg';
 
-const socket = window.io.connect('ws://localhost:3000', {
+const socket = window.io.connect('wss://devopseek.me:30001', {
 });
 
 export default function AddTask({ list }) {
