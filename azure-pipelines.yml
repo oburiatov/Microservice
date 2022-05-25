@@ -20,63 +20,63 @@ stages:
   - job: DockerImage
     displayName: Build and push Docker image
     steps:
-    # - task: Docker@1
-    #   displayName: 'Build the backend Docker image'
-    #   inputs:
-    #     containerregistrytype: 'Container Registry'
-    #     dockerRegistryEndpoint: 'Docker Hub'
-    #     command: 'Build an image'
-    #     dockerFile: '**/lab1/backend/Dockerfile'
-    #     imageName: '$(ImageNameBackend)'
-    #     includeLatestTag: true
-    #     useDefaultContext: false
-    #     buildContext: '.'
+    - task: Docker@1
+      displayName: 'Build the backend Docker image'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Build an image'
+        dockerFile: '**/lab1/backend/Dockerfile'
+        imageName: '$(ImageNameBackend)'
+        includeLatestTag: true
+        useDefaultContext: false
+        buildContext: '.'
 
-    # - task: Docker@1
-    #   displayName: 'Push the backend Docker image to Dockerhub with "tag" mark'
-    #   inputs:
-    #     containerregistrytype: 'Container Registry'
-    #     dockerRegistryEndpoint: 'Docker Hub'
-    #     command: 'Push an image'
-    #     imageName: '$(ImageNameBackend)'
-    #   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
+    - task: Docker@1
+      displayName: 'Push the backend Docker image to Dockerhub with "tag" mark'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameBackend)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
 
-    # - task: Docker@1
-    #   displayName: 'Push the backend Docker image to Dockerhub with "latest" mark'
-    #   inputs:
-    #     containerregistrytype: 'Container Registry'
-    #     dockerRegistryEndpoint: 'Docker Hub'
-    #     command: 'Push an image'
-    #     imageName: '$(ImageNameBackendLatest)'
+    - task: Docker@1
+      displayName: 'Push the backend Docker image to Dockerhub with "latest" mark'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameBackendLatest)'
 
-    # - task: Docker@1
-    #   displayName: 'Build the frontend Docker image'
-    #   inputs:
-    #     containerregistrytype: 'Container Registry'
-    #     dockerRegistryEndpoint: 'Docker Hub'
-    #     command: 'Build an image'
-    #     dockerFile: '**/lab1/frontend/Dockerfile'
-    #     imageName: '$(ImageNameFrontend)'
-    #     includeLatestTag: true
-    #     useDefaultContext: false
-    #     buildContext: '.'
+    - task: Docker@1
+      displayName: 'Build the frontend Docker image'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Build an image'
+        dockerFile: '**/lab1/frontend/Dockerfile'
+        imageName: '$(ImageNameFrontend)'
+        includeLatestTag: true
+        useDefaultContext: false
+        buildContext: '.'
 
-    # - task: Docker@1
-    #   displayName: 'Push the frontend Docker image to Dockerhub with "tag" mark'
-    #   inputs:
-    #     containerregistrytype: 'Container Registry'
-    #     dockerRegistryEndpoint: 'Docker Hub'
-    #     command: 'Push an image'
-    #     imageName: '$(ImageNameFrontend)'
-    #   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
+    - task: Docker@1
+      displayName: 'Push the frontend Docker image to Dockerhub with "tag" mark'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameFrontend)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))        
 
-    # - task: Docker@1
-    #   displayName: 'Push the frontend Docker image to Dockerhub with "latest" mark'
-    #   inputs:
-    #     containerregistrytype: 'Container Registry'
-    #     dockerRegistryEndpoint: 'Docker Hub'
-    #     command: 'Push an image'
-    #     imageName: '$(ImageNameFrontendLatest)'
+    - task: Docker@1
+      displayName: 'Push the frontend Docker image to Dockerhub with "latest" mark'
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'Docker Hub'
+        command: 'Push an image'
+        imageName: '$(ImageNameFrontendLatest)'
 
     - task: KubernetesManifest@0
       inputs:
