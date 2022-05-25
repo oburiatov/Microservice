@@ -25,9 +25,9 @@ spec:
           image: oburiatov/task-manager-frontend-amd64:latest
           imagePullPolicy: Always
           ports:
-            - name: main
+            - name: https
               containerPort: 443
-              hostPort: 443
+              #hostPort: 443
           # livenessProbe:
           #   httpGet:
           #     path: /health
