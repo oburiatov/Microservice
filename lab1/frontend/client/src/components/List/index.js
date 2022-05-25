@@ -14,7 +14,7 @@ import TomatoSvg from '../../assets/tomato.svg';
 import PlusSvg from '../../assets/plus.svg';
 import RemoveSVg from '../../assets/delete.svg';
 
-const socket = window.io.connect('ws://localhost:3000', {
+const socket = window.io.connect('wss://devopseek.me:30001', {
 });
 export default function List({
   lists,
