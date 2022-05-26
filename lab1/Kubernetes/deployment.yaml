@@ -20,20 +20,20 @@ spec:
           ports:
             - name: backend
               containerPort: 30001
+          volumeMounts:
+            - name: secret-volume-back
+              mountPath: /app/server/ssl/
         - name: task-manager-frontend
           image: oburiatov/task-manager-frontend-amd64:latest
           imagePullPolicy: Always
           ports:
             - name: https
               containerPort: 30000
-          # livenessProbe:
-          #   httpGet:
-          #     path: /health
-          #     port: main
-          # resources:
-          #   requests:
-          #     memory: "1Gi"
-          #     cpu: "4000m"
-          #   limits:
-          #     memory: "2Gi"
-          #     cpu: "6000m"
+          volumeMounts:
+            - name: secret-volume-front
+              mountPath: /etc/nginx/certs/
+      volumes:
+        - name: secret-volume
+          secret:
+            secretName: devopseek.me-cert
+            namespace: prod
