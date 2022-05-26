@@ -2,8 +2,8 @@ FROM node:14.15-alpine
 ENV TARGETPLATFORM=linux/amd64
 ARG TARGETPLATFORM=linux/amd64
 WORKDIR /app
-COPY lab1/backend/asyncapi ./
-COPY lab1/backend/server ./
+COPY lab1/backend/asyncapi/. ./asyncapi/
+COPY lab1/backend/server/. ./server/
 RUN npm install --prefix server --force
 RUN npm run build --prefix server
 
