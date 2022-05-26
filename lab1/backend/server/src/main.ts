@@ -6,8 +6,8 @@ import { join } from 'path';
 
 async function bootstrap() {
   const fs = require('fs');
-  const keyFile  = fs.readFileSync(__dirname + '/ssl/devopseek.key');
-  const certFile = fs.readFileSync(__dirname + '/ssl/devopseek.crt');
+  const keyFile  = fs.readFileSync('/app/server/ssl/devopseek.key');
+  const certFile = fs.readFileSync('/app/server/ssl/devopseek.key');
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     httpsOptions: {
       key: keyFile,
