@@ -33,7 +33,9 @@ spec:
             - name: secret-volume-front
               mountPath: /etc/nginx/certs/
       volumes:
-        - name: secret-volume
+        - name: secret-volume-front
           secret:
             secretName: devopseek.me-cert
-            namespace: prod
+        - name: secret-volume-back
+          secret:
+            secretName: devopseek.me-cert
