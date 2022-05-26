@@ -7,12 +7,12 @@ spec:
   type: NodePort
   ports:
     - name: https
-      port: 3001
-      targetPort: 3001
+      port: 30000
+      targetPort: 30000
       nodePort: 30000
     - name: backend
-      port: 3000
-      targetPort: 3000
+      port: 30001
+      targetPort: 30001
       nodePort: 30001
   selector:
     app: task-manager-prod

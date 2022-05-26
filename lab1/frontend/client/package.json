@@ -19,15 +19,15 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "start": "PORT=3001 react-scripts start",
-    "build": "PORT=3001 react-scripts build",
+    "start": "PORT=30000 react-scripts start",
+    "build": "PORT=30000 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:fix": "eslint --max-warnings=0 --fix ./",
     "lint": "eslint --max-warnings=0 ./",
     "format:fix": "prettier --write **/*.{js,jsx}",
     "format": "prettier  **/*.{js,jsx}",
-    "server": "json-server ./src/assets/db.json --watch --port 3001"
+    "server": "json-server ./src/assets/db.json --watch --port 30001"
   },
   "eslintConfig": {
     "extends": [
