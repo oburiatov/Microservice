@@ -43,4 +43,4 @@ spec:
             secretName: devopseek.me-cert
         - name: bdconfig-volume-back
           secret:
-            secretName: devopseek.me-cert
+            secretName: bdconfig.ts-conf
