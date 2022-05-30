@@ -81,7 +81,7 @@ stages:
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
-        kubernetesServiceConnection: 'devopseek-prod-1653903941299'
+        kubernetesServiceConnection: 'devopseek-prod-1653909560274'
         namespace: 'prod'
         manifests: '**/lab1/Kubernetes/deployment.yaml'
 
@@ -89,7 +89,7 @@ stages:
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
-        kubernetesServiceConnection: 'devopseek-prod-1653903941299'
+        kubernetesServiceConnection: 'devopseek-prod-1653909560274'
         namespace: 'prod'
         manifests: '**/lab1/Kubernetes/service.yaml'
 
