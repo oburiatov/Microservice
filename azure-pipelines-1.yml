@@ -3,12 +3,15 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+pool: kubernetes-microservice
 
 schedules:
 - cron: "1 19 * * *"
   displayName: Daily midnight build
+  branches:
+    include:
+    - master
 
-pool: kubernetes-microservice
 
 
 steps:
