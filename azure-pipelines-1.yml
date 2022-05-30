@@ -15,7 +15,7 @@ schedules:
 
 
 steps:
-- script: echo Hello, world!
+- script: mkdir /hello-world#echo Hello, world!
   displayName: 'Run a one-line script'
 
 # - script: |
