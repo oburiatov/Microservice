@@ -1,7 +1,7 @@
 export const config = {
-    user: 'arch',
-    host: 'localhost',
-    database: 'testbdformicroservices',
-    password: '11111111',
-    port: 5432,
+    user: 'techuser',
+    host: '138.68.108.134',
+    database: 'taskmanager',
+    password: 'C40024C40024C',
+    port: 31000,
   };
