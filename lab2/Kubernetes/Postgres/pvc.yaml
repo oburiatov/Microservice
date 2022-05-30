@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-stc-postgres-task-manager
+  namespace: db-prod
+  labels:
+    app: task-manager-prod
+spec:
+  storageClassName: stc-postgres-task-manager
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+

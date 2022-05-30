@@ -23,6 +23,8 @@ spec:
           volumeMounts:
             - name: secret-volume-back
               mountPath: /app/server/ssl/
+            - name: bdconfig-volume-back
+              mountPath: /app/server/src/
         - name: task-manager-frontend
           image: oburiatov/task-manager-frontend-amd64:latest
           imagePullPolicy: Always
@@ -37,5 +39,8 @@ spec:
           secret:
             secretName: devopseek.me-cert
         - name: secret-volume-back
+          secret:
+            secretName: devopseek.me-cert
+        - name: bdconfig-volume-back
           secret:
             secretName: devopseek.me-cert

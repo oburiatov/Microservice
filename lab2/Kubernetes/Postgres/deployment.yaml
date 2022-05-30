@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: task-manager-db
+  namespace: db-prod
+spec:
+  selector:
+    matchLabels:
+      app: task-manager-prod
+  template:
+    metadata:
+      labels:
+        app: task-manager-prod
+    spec:
+      containers:
+        - name: postgres-task-manager
+          image: postgres:14.1
+          ports:
+            - name: db-port
+              containerPort: 5432
+          env:
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: pgsecret
+                  key: username
+                  optional: false
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgsecret
+                  key: password
+                  optional: false
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: stc-volume
+      volumes:
+        - name: stc-volume
+          persistentVolumeClaim:
+            claimName: pvc-stc-postgres-task-manager
