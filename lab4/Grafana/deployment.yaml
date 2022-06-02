@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: lens-metrics
+spec:
+  selector:
+    matchLabels:
+      app: task-manager-monitor
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: task-manager-monitor
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana-enterprise
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 3000

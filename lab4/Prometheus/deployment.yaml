@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus
+  namespace: lens-metrics
+spec:
+  selector:
+    matchLabels:
+      app: task-manager-prometheus
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: task-manager-prometheus
+    spec:
+      containers:
+        - name: prometheus
+          image: prom/prometheus:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 9090
