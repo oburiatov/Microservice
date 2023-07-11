@@ -6,7 +6,7 @@ metadata:
   labels:
     app: azdevops-agent
 spec:
-  replicas: 1 #here is the configuration for the actual agent always running
+  replicas: 1
   selector:
     matchLabels:
       app: azdevops-agent

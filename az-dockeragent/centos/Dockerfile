@@ -1,21 +1,21 @@
 
-   
+
 FROM centos:7
 
 RUN yum install -y epel-release
 
 RUN yum update -y \
-&& yum install -y \
-ca-certificates \
-curl \
-jq \
-git \
-iputils \
-libcurl \
-libicu \
-libunwind \
-netcat \ 
-openssl
+    && yum install -y \
+    ca-certificates \
+    curl \
+    jq \
+    git \
+    iputils \
+    libcurl \
+    libicu \
+    libunwind \
+    netcat \ 
+    openssl
 
 RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
